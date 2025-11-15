@@ -1,66 +1,7 @@
-## Foundry
+### ERC4626 Rebalance
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
-
-Foundry consists of:
-
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Yield management can be cumbersome for an individual and maximizing yield in crypto is a full-time job given the turbulent dyanimcs of vairous protocols. 
+ERC4626 is a key building block in the aforementioned problem, giving a asset/token management stack that can be utilized by strategies to maximize yield. 
+In this rendition, we're adding a *rebalance* method that enables the strategist to move the assets to various whitelisted protocols in efforts to dynamically 
+maximize yields. We have a timelock mechanism also that allows onboarding new protocols after the allotted time has passed, making way for new lucrative
+protocols to be discovered. 
