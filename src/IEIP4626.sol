@@ -9,7 +9,9 @@ pragma solidity ^0.8.0;
  *      following predictable accounting rules.
  */
 interface ERC4626  {
-
+    //Events
+    event Deposit(address indexed sender, address indexed owner, uint256 assets, uint256 shares);
+    event Withdraw(address indexed sender, address indexed receiver, address indexed owner, uint256 assets, uint256 shares);
     /**
      * @notice Returns the address of the underlying ERC-20 asset used by the vault.
      * @return assetTokenAddress_ The contract address of the underlying asset token.
