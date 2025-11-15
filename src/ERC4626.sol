@@ -3,13 +3,20 @@ pragma solidity ^0.8.0;
 import {AssetERC20} from "./AssetERC20.sol";
 import {IERC4626} from "./IERC4626.sol";  
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-
+import {IStrategyVault} from "./IStategy.sol";
 contract ERC4626 is AssetERC20, IERC4626 {
-    uint256 assets;
+    //Immutables
     IERC20 immutable assetAddress; 
-    constructor(address _assetAddress, string memory name, string memory symbol) AssetERC20(name,symbol) {
+    IStrategy immutable strategyManager;
+    
+    //Storage
+    uint256 rawAssets;
+    address[] stategies; 
+
+    constructor(address _assetAddress, address _strategyManager, string memory name, string memory symbol) Rebalancer(AssetERC20(name,symbol) {
         //burn 1000 assets for safeguarding initial donate attack
         assetAddress = IERC20(_assetAddress);
+        strategyManager = IStategy(_stategyManager);
     }
     //View
     //======================
@@ -18,13 +25,15 @@ contract ERC4626 is AssetERC20, IERC4626 {
         Returns the ERC20 token address of the underlying asset
      */
     function asset() public view returns (address assetTokenAddress_) {
-        return assetTokenAddress_;
+        assetTokenAddress_ = assetAddress;
     }
 
     function totalAssets() public view returns (uint256 totalManagedAssets_) {
         /**
             Needs to be implemented
          */
+         totalManagedAssets = strategyManager.getTotalBalance();
+
     }
     function convertToShares(uint256 assets) public view returns (uint256 shares_){
 
