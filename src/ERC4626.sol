@@ -1,14 +1,16 @@
 pragma solidity ^0.8.0;
 
-import {ERC20} from "./ERC20.sol";
+import {AssetERC20} from "./AssetERC20.sol";
 import {IERC4626} from "./IERC4626.sol";  
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract ERC4626 is ERC20, IERC4626 {
-    address immutable assetTokenAddress;
-    constructor(address _assetTokenAddress) {
-        assetTokenAddress = _assetTokenAddress;
+contract ERC4626 is AssetERC20, IERC4626 {
+    uint256 assets;
+    IERC20 immutable assetAddress; 
+    constructor(address _assetAddress, string memory name, string memory symbol) AssetERC20(name,symbol) {
+        //burn 1000 assets for safeguarding initial donate attack
+        assetAddress = IERC20(_assetAddress);
     }
-
     //View
     //======================
 
@@ -24,6 +26,16 @@ contract ERC4626 is ERC20, IERC4626 {
             Needs to be implemented
          */
     }
+    function convertToShares(uint256 assets) public view returns (uint256 shares_){
+
+        /**
+            Display how many shares would be produced given an amount of assets. Assets
+            refers to the raw assets unlike total assets which includes fees and yields.
+         */
+    }
+     function convertToAssets(uint256 shares) public view returns (uint256 assets_){
+        
+    }
     /**
         Max amount of the underlying asset that can be deposited into the vault for the receiver through a deposit call. 
      */
@@ -38,7 +50,7 @@ contract ERC4626 is ERC20, IERC4626 {
     function deposit(
         uint256 assets,
         address receiver
-    ) public nonpayable returns (uint256 shares_) {}
+    ) public returns (uint256 shares_) {}
 
     function maxMint(
         address receiever
